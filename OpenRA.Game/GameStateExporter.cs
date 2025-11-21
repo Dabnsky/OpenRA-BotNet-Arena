@@ -67,10 +67,18 @@ namespace OpenRA.Game
             return pdata;
         }
 
-        private void gatherPlayerData(Player player)
+        private ActorData gatherActorData(Actor actor)
         {
-            playerName = player.PlayerName;
-            faction = player.Faction.Name;
+            return new ActorData
+            {
+                Id = actor.ActorID,
+                Type = actor.Info.Name,
+                Position = actor.Location, // You may want to format this
+                Health = actor.TraitOrDefault<IHealth>()?.HP ?? 0,
+                IsDead = actor.IsDead,
+                Owner = actor.Owner?.PlayerName ?? "Neutral",
+                CurrentAction = actor.CurrentActivity?.GetType().Name ?? "Idle"
+            };
         }
 
 
