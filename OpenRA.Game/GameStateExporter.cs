@@ -9,15 +9,14 @@ namespace OpenRA.Game
     public sealed class GameStateExporter
     {
         int tick;
-        private Player[] Players = [];
+        private Player[] players = [];
         private List<Actor> actorList = [];
-
         private Map map;
 
         private void gatherWorldData(World world)
         {
             tick = world.WorldTick;
-            Players = world.Players;
+            players = world.Players;
             actorList = world.Actors.ToList();
             map = world.Map;
         }
