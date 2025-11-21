@@ -3,6 +3,7 @@ using System.Linq;
 using System.Text.Json;
 using OpenRA.Support;
 using System.Collections.Generic;
+using OpenRA.Traits;
 
 namespace OpenRA.Game
 {
@@ -81,7 +82,25 @@ namespace OpenRA.Game
             };
         }
 
+        public string ExportGameState(World world)
+        {
+            gatherWorldData(world);
 
+            playerDataList = players.Select(gatherPlayerData).ToList();
 
+            var exportObj = new
+            {
+                Tick = tick,
+                Players = playerDataList,
+                Map = new
+                {
+                    Size = map?.MapSize,
+                    Resources = map?.Resources
+                    // Add more map info as needed
+                }
+            };
+
+            return JsonSerializer.Serialize(exportObj);
+        }
     }
 }
