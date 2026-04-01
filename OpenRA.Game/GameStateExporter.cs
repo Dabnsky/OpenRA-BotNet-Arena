@@ -5,10 +5,11 @@ using OpenRA.Support;
 using System.Collections.Generic;
 using OpenRA.Traits;
 
-namespace OpenRA.Game
+namespace OpenRA
 {
     public sealed class GameStateExporter
     {
+
         int tick;
         private Player[] players = [];
         private List<Actor> actorList = [];
