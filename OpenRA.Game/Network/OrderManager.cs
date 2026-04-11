@@ -255,6 +255,7 @@ namespace OpenRA.Network
 				{
 					UnitOrders.ProcessOrder(this, World, clientId, order);
 					processClientOrders.Add(new ClientOrder { Client = clientId, Order = order });
+					Sync.RunUnsynced(World, () => GameStateExporter.Instance.RecordProcessedOrder(World, NetFrameNumber, clientId, order));
 				}
 			}
 

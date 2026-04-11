@@ -659,6 +659,7 @@ namespace OpenRA
 						Sync.RunUnsynced(world, () => world.OrderGenerator.Tick(world));
 
 						world.Tick();
+						Sync.RunUnsynced(world, () => GameStateExporter.Instance.RecordTick(world));
 
 						PerfHistory.Tick();
 					}
